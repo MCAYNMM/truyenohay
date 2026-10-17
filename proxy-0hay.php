@@ -29,8 +29,15 @@ if ($httpCode === 200 && $imageData) {
     echo $imageData;
 } else {
     error_log("Proxy image failed: URL=$imageUrl, HTTP_CODE=$httpCode, ERROR=$curlError, USER_AGENT=$userAgent");
-    header("Content-Type: image/jpeg");
+    $placeholder = __DIR__ . '/public/images/loading.png';
+    if (!is_file($placeholder) || !is_readable($placeholder)) {
+        http_response_code(502);
+        error_log("Image proxy placeholder is unavailable: $placeholder");
+        exit;
+    }
+    header("Content-Type: image/png");
     header("Access-Control-Allow-Origin: *");
-    readfile(__DIR__ . '/public/placeholder.jpg') or die("Placeholder not found");
+    header("Cache-Control: public, max-age=300");
+    readfile($placeholder);
 }
 ?>

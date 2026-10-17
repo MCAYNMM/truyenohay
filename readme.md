@@ -85,6 +85,8 @@ $dbname = "truyen0hay";
 ```
 
 📌 Điều chỉnh theo thông tin máy chủ SQL của bạn. Khi chạy trên local, truy cập đường dẫn `http://truyenkhonghay.test/` để đảm bảo hoạt động chính xác.
+Nếu MySQL/MariaDB dùng cổng khác `3306`, hãy đặt biến môi trường `DB_PORT` tương ứng.
+Trên localhost, `SITE_URL` tự lấy host, cổng và đường dẫn hiện tại.
 
 ### 5. 📸 Cấu hình Imgur API - `admin/upload-manga.php`
 
